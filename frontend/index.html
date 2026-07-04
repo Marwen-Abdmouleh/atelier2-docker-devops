@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Atelier 2 - Docker</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 80px; background:#f4f6f8; }
+        h1 { color: #2E86AB; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        #resultat { margin-top: 20px; font-weight: bold; color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Mini-projet DevOps - Frontend</h1>
+    <p>Cette page appelle le backend Spring Boot via l'API REST.</p>
+    <button onclick="appelerBackend()">Tester le backend</button>
+    <div id="resultat"></div>
+
+    <script>
+        async function appelerBackend() {
+            try {
+                const reponse = await fetch('http://localhost:8080/api/hello');
+                const donnees = await reponse.json();
+                document.getElementById('resultat').innerText = donnees.message;
+            } catch (erreur) {
+                document.getElementById('resultat').innerText = "Erreur : backend injoignable.";
+            }
+        }
+    </script>
+</body>
+</html>
